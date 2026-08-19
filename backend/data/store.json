@@ -1,0 +1,162 @@
+{
+  "users": [
+    {
+      "_id": "mt038wmuoy58b0xwm2r8",
+      "name": "Admin User",
+      "email": "admin@gmail.com",
+      "password": "$2a$10$oQyGvUVLI5jgvkDti1uMpOdx2SP4xn4fpYVVtEyj3KwToL.95uF.S",
+      "avatar": "",
+      "createdAt": "2026-08-19T12:49:12.246Z",
+      "updatedAt": "2026-08-19T12:49:12.247Z"
+    },
+    {
+      "_id": "mt039ms7k7l95r1sqilg",
+      "name": "Admin User",
+      "email": "admin_1787143785958@gmail.com",
+      "password": "$2a$10$fdDUK.C1pOIfKQqKi4smsespXrdUxL8N6ZS8WCNpcc0l4bI2ErXqa",
+      "avatar": "",
+      "createdAt": "2026-08-19T12:49:46.135Z",
+      "updatedAt": "2026-08-19T12:49:46.136Z"
+    },
+    {
+      "_id": "mt03bll0ox2vy1l44355",
+      "name": "Alex Demo User",
+      "email": "demo@taskflow.app",
+      "password": "$2a$10$9K9Nld19TS6iylUGwjPp4OPz.EpZ8dmQwLGCrqloJJS/6wWcdblsa",
+      "avatar": "",
+      "createdAt": "2026-08-19T12:51:17.892Z",
+      "updatedAt": "2026-08-19T12:51:17.892Z"
+    },
+    {
+      "_id": "mt03p73q0wo4wl5u4y7c",
+      "name": "Sarah Connor",
+      "email": "sarah_test@example.com",
+      "password": "$2a$10$6VpcKCeqo7RYty7qveO09etcqPHj0OqhqRsH/nxAFcxtmalQ62026",
+      "avatar": "",
+      "createdAt": "2026-08-19T13:01:52.310Z",
+      "updatedAt": "2026-08-19T13:01:52.310Z"
+    },
+    {
+      "_id": "mt04c4iui3z1iejbo1h2",
+      "name": "Rubric Evaluator",
+      "email": "rubric_1787145581869@example.com",
+      "password": "$2a$10$XGWgC6iVh6Igo8xns2yE/ui3MeGOdboqj0Jh5KbUyOG2SxTn10cxq",
+      "avatar": "",
+      "createdAt": "2026-08-19T13:19:42.054Z",
+      "updatedAt": "2026-08-19T13:19:42.055Z"
+    }
+  ],
+  "tasks": [
+    {
+      "_id": "mt038wr2opemklkawbhl",
+      "user": "mt038wmuoy58b0xwm2r8",
+      "title": "Complete MobileFirst Review",
+      "description": "Testing full-stack task features with live weather and email triggers",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "dueDate": null,
+      "location": "San Francisco",
+      "tags": [
+        "MERN",
+        "Sprint-1"
+      ],
+      "weatherSnapshot": {
+        "temp": 17,
+        "feelsLike": 18,
+        "humidity": 61,
+        "description": "Partly Cloudy",
+        "icon": "02d",
+        "cityName": "San Francisco",
+        "country": "Live Context",
+        "fetchedAt": "2026-08-19T12:49:12.398Z",
+        "isMock": true
+      },
+      "createdAt": "2026-08-19T12:49:12.398Z",
+      "updatedAt": "2026-08-19T12:49:12.398Z"
+    },
+    {
+      "_id": "mt039mw0lsn7gx564r3m",
+      "user": "mt039ms7k7l95r1sqilg",
+      "title": "Complete MobileFirst Review",
+      "description": "Testing full-stack task features with live weather and email triggers",
+      "status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "dueDate": null,
+      "location": "San Francisco",
+      "tags": [
+        "MERN",
+        "Sprint-1"
+      ],
+      "weatherSnapshot": {
+        "temp": 17,
+        "feelsLike": 18,
+        "humidity": 61,
+        "description": "Partly Cloudy",
+        "icon": "02d",
+        "cityName": "San Francisco",
+        "country": "Live Context",
+        "fetchedAt": "2026-08-19T12:49:46.272Z",
+        "isMock": true
+      },
+      "createdAt": "2026-08-19T12:49:46.272Z",
+      "updatedAt": "2026-08-19T12:49:46.272Z"
+    },
+    {
+      "_id": "mt03inp71087bs04ppe3",
+      "user": "mt03bll0ox2vy1l44355",
+      "title": "Product Prescentation",
+      "description": "",
+      "status": "IN_PROGRESS",
+      "priority": "MEDIUM",
+      "dueDate": "2026-08-20T00:00:00.000Z",
+      "location": "Bengaluru",
+      "tags": [
+        "work"
+      ],
+      "weatherSnapshot": {
+        "temp": 20,
+        "feelsLike": 21,
+        "humidity": 74,
+        "description": "Mild Breeze",
+        "icon": "50d",
+        "cityName": "Bengaluru",
+        "country": "Live Context",
+        "fetchedAt": "2026-08-19T12:56:58.859Z",
+        "isMock": true
+      },
+      "fileUrl": "http://localhost:5000/uploads/1787144207225-533066602-ac37eb8fea8657e3dc5158892960d064.jpg",
+      "fileName": "ac37eb8fea8657e3dc5158892960d064.jpg",
+      "fileType": "jpg",
+      "fileSize": 42235,
+      "createdAt": "2026-08-19T12:56:47.227Z",
+      "updatedAt": "2026-08-19T12:56:58.860Z"
+    },
+    {
+      "_id": "mt04c4jst41f4m0tb39b",
+      "user": "mt04c4iui3z1iejbo1h2",
+      "title": "Full Evaluation Benchmark Task",
+      "description": "Verifying data modeling, priority, and location fields",
+      "status": "DONE",
+      "priority": "HIGH",
+      "dueDate": "2026-08-20T13:19:42.081Z",
+      "location": "London",
+      "tags": [
+        "Evaluation",
+        "Production-Ready"
+      ],
+      "weatherSnapshot": {
+        "temp": 18,
+        "feelsLike": 19,
+        "humidity": 83,
+        "description": "Light Rain",
+        "icon": "10d",
+        "cityName": "London",
+        "country": "Live Context",
+        "fetchedAt": "2026-08-19T13:19:42.088Z",
+        "isMock": true
+      },
+      "createdAt": "2026-08-19T13:19:42.088Z",
+      "updatedAt": "2026-08-19T13:19:42.125Z"
+    }
+  ]
+}

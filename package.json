@@ -1,0 +1,16 @@
+{
+  "name": "task-management-mern",
+  "version": "1.0.0",
+  "description": "Full-Stack MERN Task Management Application with JWT Auth, Cloudinary, Nodemailer, and OpenWeatherMap",
+  "scripts": {
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
