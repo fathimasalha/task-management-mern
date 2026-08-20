@@ -60,10 +60,15 @@ const apiLimiter = rateLimit({
 });
 app.use('/api', apiLimiter);
 
-// API Health Check
+// API Health Check with Database Status
 app.get('/api/health', (req, res) => {
+  const dbStates = { 0: 'disconnected', 1: 'connected', 2: 'connecting', 3: 'disconnecting' };
+  const dbStatus = mongoose.connection.readyState;
   res.json({
     status: 'healthy',
+    database: dbStates[dbStatus] || 'unknown',
+    databaseHost: mongoose.connection.host || 'none',
+    databaseName: mongoose.connection.name || 'none',
     timestamp: new Date(),
     service: 'Task Management MERN API',
     uptime: process.uptime(),
