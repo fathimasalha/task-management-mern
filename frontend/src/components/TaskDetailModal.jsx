@@ -34,6 +34,10 @@ export const TaskDetailModal = ({
     task.fileUrl &&
     /\.(jpg|jpeg|png|webp|gif)$/i.test(task.fileUrl);
 
+  const isPdfAttachment =
+    task.fileUrl &&
+    (/\.pdf$/i.test(task.fileUrl) || task.fileType === 'pdf');
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 md:p-6">
       {/* Backdrop */}
@@ -239,6 +243,27 @@ export const TaskDetailModal = ({
                     alt={task.fileName || 'Attachment preview'}
                     className="max-h-64 object-contain rounded-xl"
                   />
+                </div>
+              ) : isPdfAttachment ? (
+                <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white flex flex-col">
+                  <iframe
+                    src={`${task.fileUrl}#view=FitH`}
+                    className="w-full h-96 border-0"
+                    title={task.fileName || 'PDF Preview'}
+                  />
+                  <div className="flex items-center justify-between p-3 bg-slate-50 border-t border-slate-100 text-xs">
+                    <span className="font-semibold text-slate-700 truncate max-w-[70%]">
+                      📄 {task.fileName || 'Attachment.pdf'}
+                    </span>
+                    <a
+                      href={task.fileUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-brand-600 font-bold hover:underline flex items-center gap-1"
+                    >
+                      Open in New Tab <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
                 </div>
               ) : (
                 <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-slate-200 shadow-sm">
