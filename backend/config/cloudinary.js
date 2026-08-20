@@ -37,10 +37,13 @@ const uploadToCloudinaryOrLocal = (file, folder = 'task_attachments') => {
     const isConfigured = getCloudinaryConfig();
 
     if (isConfigured) {
+      const isImage = file.mimetype && file.mimetype.startsWith('image/');
+      const resourceType = isImage ? 'image' : 'raw';
+
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder,
-          resource_type: 'auto',
+          resource_type: resourceType,
         },
         (error, result) => {
           if (error) {
