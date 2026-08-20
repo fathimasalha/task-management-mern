@@ -100,8 +100,11 @@ const saveLocally = (file, resolve, reject) => {
   }
 };
 
+const isCloudinaryConfigured = () => getCloudinaryConfig();
+
 module.exports = {
   cloudinary,
   isCloudinaryConfigured,
+  getCloudinaryConfig,
   uploadToCloudinaryOrLocal,
 };
