@@ -38,12 +38,19 @@ const uploadToCloudinaryOrLocal = (file, folder = 'task_attachments') => {
 
     if (isConfigured) {
       const isImage = file.mimetype && file.mimetype.startsWith('image/');
-      const resourceType = isImage ? 'image' : 'raw';
+      const isPdf = file.mimetype && (file.mimetype === 'application/pdf' || file.mimetype.includes('pdf') || (file.originalname && file.originalname.toLowerCase().endsWith('.pdf')));
+      const resourceType = (isImage || isPdf) ? 'image' : 'raw';
+
+      const fileExt = path.extname(file.originalname);
+      const baseName = path.basename(file.originalname, fileExt).replace(/[^a-zA-Z0-9.-]/g, '_');
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+      const publicId = `${baseName}-${uniqueSuffix}${fileExt}`;
 
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder,
           resource_type: resourceType,
+          public_id: publicId,
         },
         (error, result) => {
           if (error) {

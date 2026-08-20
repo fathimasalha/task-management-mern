@@ -36,7 +36,16 @@ export const TaskDetailModal = ({
 
   const isPdfAttachment =
     task.fileUrl &&
-    (/\.pdf$/i.test(task.fileUrl) || task.fileType === 'pdf');
+    (/\.pdf$/i.test(task.fileUrl) || (task.fileType && task.fileType.toLowerCase().includes('pdf')));
+
+  const isDocxAttachment =
+    task.fileUrl &&
+    (/\.(docx|doc)$/i.test(task.fileUrl) ||
+      (task.fileType &&
+        (task.fileType.toLowerCase().includes('docx') ||
+          task.fileType.toLowerCase().includes('doc') ||
+          task.fileType.toLowerCase().includes('word') ||
+          task.fileType.toLowerCase().includes('officedocument'))));
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 md:p-6">
@@ -262,6 +271,37 @@ export const TaskDetailModal = ({
                       className="text-brand-600 font-bold hover:underline flex items-center gap-1"
                     >
                       Open in New Tab <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              ) : isDocxAttachment ? (
+                <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white flex flex-col">
+                  {task.fileUrl.includes('localhost') || task.fileUrl.includes('127.0.0.1') ? (
+                    <div className="flex flex-col items-center justify-center p-8 bg-slate-50 text-slate-500">
+                      <FileCheck2 className="w-12 h-12 text-slate-400 mb-2" />
+                      <p className="text-sm font-semibold">Word Document Preview</p>
+                      <p className="text-xs text-slate-400 mt-1 max-w-sm text-center">
+                        Local Word document previews are not supported. Please download the file to view its contents.
+                      </p>
+                    </div>
+                  ) : (
+                    <iframe
+                      src={`https://docs.google.com/gview?url=${encodeURIComponent(task.fileUrl)}&embedded=true`}
+                      className="w-full h-96 border-0"
+                      title={task.fileName || 'Word Document Preview'}
+                    />
+                  )}
+                  <div className="flex items-center justify-between p-3 bg-slate-50 border-t border-slate-100 text-xs">
+                    <span className="font-semibold text-slate-700 truncate max-w-[70%]">
+                      📝 {task.fileName || 'Attachment.docx'}
+                    </span>
+                    <a
+                      href={task.fileUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-brand-600 font-bold hover:underline flex items-center gap-1"
+                    >
+                      Open/Download File <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
                 </div>
