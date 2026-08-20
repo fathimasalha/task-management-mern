@@ -25,23 +25,27 @@ export const TaskCard = ({
   const isOverdue =
     task.dueDate && !isDone && new Date(task.dueDate) < new Date();
 
-  // Priority color config
+  // Priority color & accent border config
   const priorityConfig = {
     LOW: {
       label: 'Low',
       class: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700',
+      borderAccent: 'border-l-4 border-l-slate-400 dark:border-l-slate-600',
     },
     MEDIUM: {
       label: 'Medium',
       class: 'bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300 border-blue-200 dark:border-blue-800',
+      borderAccent: 'border-l-4 border-l-blue-500',
     },
     HIGH: {
       label: 'High',
       class: 'bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300 border-amber-200 dark:border-amber-800',
+      borderAccent: 'border-l-4 border-l-amber-500',
     },
     URGENT: {
       label: 'Urgent',
       class: 'bg-rose-50 text-rose-700 dark:bg-rose-950/50 dark:text-rose-300 border-rose-200 dark:border-rose-800 animate-pulse-subtle',
+      borderAccent: 'border-l-4 border-l-rose-500',
     },
   };
 
@@ -73,8 +77,8 @@ export const TaskCard = ({
 
   return (
     <div
-      className={`group relative p-4 sm:p-5 rounded-2xl glass-panel border transition-all duration-200 hover:shadow-lg hover:border-brand-300 dark:hover:border-brand-700 flex flex-col justify-between ${
-        isDone ? 'opacity-80 bg-slate-50/50 dark:bg-slate-900/40' : ''
+      className={`group relative p-4 sm:p-5 rounded-3xl glass-panel border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-black/60 flex flex-col justify-between ${priorityStyle.borderAccent} ${
+        isDone ? 'opacity-75 bg-slate-50/50 dark:bg-slate-900/40' : ''
       }`}
     >
       <div>
@@ -82,7 +86,7 @@ export const TaskCard = ({
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span
-              className={`px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider rounded-md border ${priorityStyle.class}`}
+              className={`px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-lg border ${priorityStyle.class}`}
             >
               {priorityStyle.label}
             </span>
@@ -91,7 +95,7 @@ export const TaskCard = ({
             <select
               value={task.status}
               onChange={(e) => onStatusChange(task, e.target.value)}
-              className={`text-xs font-medium px-2 py-0.5 rounded-md cursor-pointer border-none outline-none focus:ring-1 focus:ring-brand-500 transition-colors ${statusStyle.class}`}
+              className={`text-xs font-semibold px-2.5 py-0.5 rounded-lg cursor-pointer border-none outline-none focus:ring-2 focus:ring-brand-500 shadow-sm transition-all ${statusStyle.class}`}
             >
               <option value="PENDING">Pending</option>
               <option value="IN_PROGRESS">In Progress</option>

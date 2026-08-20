@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply font-sans bg-slate-50 text-slate-900 antialiased;
+    @apply font-sans bg-slate-100 text-slate-900 antialiased;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 }
@@ -27,11 +27,15 @@
   @apply bg-slate-400;
 }
 
-/* Glassmorphism card utilities */
+/* Glassmorphism & card utilities */
 .glass-panel {
-  @apply bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-sm;
+  @apply bg-white/95 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.05)] dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.4)];
 }
 
 .glass-dropdown {
-  @apply bg-white/95 backdrop-blur-lg border border-slate-200 shadow-xl;
+  @apply bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200/90 dark:border-slate-800 shadow-2xl;
+}
+
+.card-hover-effect {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-300/40 dark:hover:shadow-black/50;
 }

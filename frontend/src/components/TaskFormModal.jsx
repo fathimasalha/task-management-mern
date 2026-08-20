@@ -144,30 +144,30 @@ export const TaskFormModal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 md:p-6">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
-      {/* Modal Card with increased width (max-w-2xl) */}
-      <div className="relative w-full max-w-2xl bg-white rounded-3xl z-10 shadow-2xl animate-slide-up max-h-[88vh] flex flex-col overflow-hidden border border-slate-200">
-        {/* Fixed Header with enhanced top padding */}
-        <div className="flex items-center justify-between px-7 pt-7 pb-5 border-b border-slate-100 bg-slate-50/70 flex-shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20 flex-shrink-0">
+      {/* Modal Card with responsive width & height */}
+      <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl z-10 shadow-2xl animate-slide-up max-h-[92vh] flex flex-col overflow-hidden border border-slate-200 dark:border-slate-800">
+        {/* Fixed Header */}
+        <div className="flex items-center justify-between px-4 py-3.5 sm:px-7 sm:pt-6 sm:pb-5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/70 flex-shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20 flex-shrink-0">
               {taskToEdit ? (
-                <Edit3 className="w-5 h-5" />
+                <Edit3 className="w-4 h-4 sm:w-5 sm:h-5" />
               ) : (
-                <PlusCircle className="w-5 h-5" />
+                <PlusCircle className="w-4 h-4 sm:w-5 sm:h-5" />
               )}
             </div>
             <div>
-              <h2 className="text-xl font-extrabold text-slate-900 leading-snug">
+              <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white leading-snug">
                 {taskToEdit ? 'Edit Task' : 'Create New Task'}
               </h2>
-              <p className="text-xs text-slate-500 font-medium mt-0.5">
+              <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5 line-clamp-1">
                 {taskToEdit
                   ? 'Update task details, attachments, or change status'
                   : 'Add a new task with due date, priority, and live weather location'}
@@ -176,7 +176,7 @@ export const TaskFormModal = ({
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200/70 transition-colors"
+            className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -185,7 +185,7 @@ export const TaskFormModal = ({
         {/* Form Content Wrapper */}
         <form onSubmit={handleSubmit} className="flex flex-col flex-1 overflow-hidden">
           {/* Scrollable Middle Content */}
-          <div className="px-6 py-5 overflow-y-auto flex-1 space-y-4.5">
+          <div className="px-4 py-4 sm:px-7 sm:py-5 overflow-y-auto flex-1 space-y-4">
             {/* Title */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
@@ -388,19 +388,19 @@ export const TaskFormModal = ({
           </div>
 
           {/* Fixed Footer */}
-          <div className="px-6 py-4 border-t border-slate-100 bg-slate-50 flex items-center justify-end gap-3 flex-shrink-0">
+          <div className="px-4 py-3 sm:px-7 sm:py-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-900/90 flex items-center justify-end gap-2.5 sm:gap-3 flex-shrink-0">
             <button
               type="button"
               onClick={onClose}
               disabled={isSubmitting}
-              className="px-4.5 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+              className="flex-1 sm:flex-initial px-4 sm:px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 text-white text-sm font-bold shadow-md shadow-brand-500/25 transition-all disabled:opacity-50 active:scale-[0.98]"
+              className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-brand-500/25 transition-all disabled:opacity-50 active:scale-[0.98]"
             >
               {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
               <span>{taskToEdit ? 'Save Changes' : 'Create Task'}</span>
