@@ -3,20 +3,24 @@ const streamifier = require('streamifier');
 const fs = require('fs');
 const path = require('path');
 
-// Configure Cloudinary if credentials exist
-const isCloudinaryConfigured = Boolean(
-  process.env.CLOUDINARY_CLOUD_NAME &&
-  process.env.CLOUDINARY_API_KEY &&
-  process.env.CLOUDINARY_API_SECRET
-);
+// Dynamic check & configure Cloudinary
+const getCloudinaryConfig = () => {
+  const isConfigured = Boolean(
+    process.env.CLOUDINARY_CLOUD_NAME &&
+    process.env.CLOUDINARY_API_KEY &&
+    process.env.CLOUDINARY_API_SECRET
+  );
 
-if (isCloudinaryConfigured) {
-  cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-  });
-}
+  if (isConfigured) {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+  }
+
+  return isConfigured;
+};
 
 /**
  * Uploads a file buffer to Cloudinary or falls back to local file storage.
@@ -30,7 +34,9 @@ const uploadToCloudinaryOrLocal = (file, folder = 'task_attachments') => {
       return resolve(null);
     }
 
-    if (isCloudinaryConfigured) {
+    const isConfigured = getCloudinaryConfig();
+
+    if (isConfigured) {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder,
@@ -53,7 +59,7 @@ const uploadToCloudinaryOrLocal = (file, folder = 'task_attachments') => {
       );
       streamifier.createReadStream(file.buffer).pipe(uploadStream);
     } else {
-      // Local fallback
+      // Local fallback with proper public host
       saveLocally(file, resolve, reject);
     }
   });
@@ -72,8 +78,14 @@ const saveLocally = (file, resolve, reject) => {
 
     fs.writeFileSync(filePath, file.buffer);
 
-    const port = process.env.PORT || 5000;
-    const fileUrl = `http://localhost:${port}/uploads/${safeFilename}`;
+    let baseUrl = `http://localhost:${process.env.PORT || 5000}`;
+    if (process.env.RENDER_EXTERNAL_HOSTNAME) {
+      baseUrl = `https://${process.env.RENDER_EXTERNAL_HOSTNAME}`;
+    } else if (process.env.RENDER_EXTERNAL_URL) {
+      baseUrl = process.env.RENDER_EXTERNAL_URL.replace(/\/$/, '');
+    }
+
+    const fileUrl = `${baseUrl}/uploads/${safeFilename}`;
 
     resolve({
       url: fileUrl,
