@@ -192,7 +192,7 @@ export const DashboardPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors pb-16">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 transition-colors pb-16">
       {/* Navigation Header */}
       <Navbar
         onOpenCreateModal={() => {
@@ -207,7 +207,7 @@ export const DashboardPage = () => {
         <StatsOverview stats={stats} />
 
         {/* Action Controls & Toolbar */}
-        <div className="glass-panel p-4 sm:p-5 rounded-3xl mb-6 space-y-4">
+        <div className="glass-panel p-4 sm:p-5 rounded-3xl mb-6 space-y-4 shadow-xl shadow-slate-200/50 dark:shadow-black/50">
           <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3.5">
             {/* Search Input */}
             <div className="relative flex-1">
@@ -222,7 +222,7 @@ export const DashboardPage = () => {
             </div>
 
             {/* View Switcher & Actions */}
-            <div className="flex items-center gap-2 self-end lg:self-auto">
+            <div className="flex items-center justify-between sm:justify-end gap-2 w-full lg:w-auto">
               <div className="flex items-center p-1 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-800">
                 <button
                   onClick={() => setViewMode('grid')}
@@ -266,7 +266,7 @@ export const DashboardPage = () => {
           {/* Multi-Filters Bar */}
           <div className="flex flex-wrap items-center gap-2.5 pt-3 border-t border-slate-100 dark:border-slate-800/80 text-xs">
             {/* Status Filter */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 flex-wrap">
               <span className="font-semibold text-slate-400 mr-1">Status:</span>
               {['', 'PENDING', 'IN_PROGRESS', 'DONE'].map((st) => (
                 <button
@@ -308,7 +308,7 @@ export const DashboardPage = () => {
             </div>
 
             {/* Sort Filter */}
-            <div className="flex items-center gap-1.5 ml-auto">
+            <div className="flex items-center gap-1.5 ml-0 sm:ml-auto">
               <span className="font-semibold text-slate-400">Sort:</span>
               <select
                 value={`${sortBy}-${sortOrder}`}
@@ -417,8 +417,8 @@ export const DashboardPage = () => {
 
             {/* Pagination Controls */}
             {meta.totalPages > 1 && (
-              <div className="mt-8 flex items-center justify-between border-t border-slate-200 dark:border-slate-800 pt-4 text-xs text-slate-500">
-                <span>
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-200 dark:border-slate-800 pt-4 text-xs text-slate-500">
+                <span className="text-center sm:text-left">
                   Showing {tasks.length} of {meta.total} tasks
                 </span>
                 <div className="flex items-center gap-2">
